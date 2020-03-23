@@ -1,5 +1,6 @@
 """Sudoku Game"""
 
+game_won = False
 
 ## Read sudoku data
 f = open('sudoku.csv')
@@ -166,6 +167,7 @@ def board_valid(problem_board, solution_board):
 import itertools as it
 
 ## change board
+selected_value = 1
 from copy import deepcopy
 
 def update_board(board, row, col, value):
@@ -173,6 +175,7 @@ def update_board(board, row, col, value):
     new_board[row][col] = value
     return new_board
 
+cell_selected = (0, 0)
 
 print("""
 {} {} {} | {} {} {} | {} {} {}
@@ -208,6 +211,7 @@ pyxel.cls(3)
 pyxel.text(1, 1, "8", 0)
 # pyxel.show()
 
+is_valid = True
 print(pyxel.load('my_resource.pyxres', True, True))
 image = pyxel.image(0)
 print(dir(image))
@@ -216,11 +220,10 @@ print(dir(image))
 
 
 pyxel.mouse(True)
-scene = {'board': puzzle_board, 'cell_selected': (0, 0), 'is_valid': True, 'selected_value': 1, 'game_won': False, 'solution_board': solution_board}
-cell_selected = (0, 0)
-is_valid = True
-selected_value = 1
-game_won = False
+
+
+
+
 def draw():
     global puzzle_board
     global solution_board
