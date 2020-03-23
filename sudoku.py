@@ -232,11 +232,7 @@ def draw():
     global selected_value
     global game_won
     if game_won:
-        pyxel.cls(10)
-    elif is_valid:
-        pyxel.cls(3)
-    else:
-        pyxel.cls(8)
+        pyxel.cls(10)  # Make bakcground yellow if game is won
     # Draw each space
     for i, row in enumerate(puzzle_board):
         for j, value in enumerate(row):
