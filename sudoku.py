@@ -201,19 +201,26 @@ def fill_board(puzzle):
     return puzzle_board # change from a string to a list of list of ints
 
 
+def read_line_from_puzzlefile(file):
+    ## Read sudoku data
+    f = open(file)
+    text = f.read()
+    # Get one of the puzzles and its corresponding solution
+    lines = text.splitlines()
+    line_number = random.randint(0, len(lines))
+    return lines[line_number]
+
+
+def format_puzzle(line):
+    line = line.strip()
+    puzzle, solution = line.split(",")
+    return puzzle, solution
+
+
 game_won = False
-## Read sudoku data
-f = open("sudoku.csv")
 
-text = f.read()
-
-# Get one of the puzzles and its corresponding solution
-
-lines = text.splitlines()
-line_number = random.randint(0, len(lines))
-line = lines[line_number]
-line = line.strip()
-puzzle, solution = line.split(",")
+line = read_line_from_puzzlefile("sudoku.csv")
+puzzle, solution = format_puzzle(line)
 
 ## Make a board structure to fill in the data with.
 empty_board = [[0 for _ in range(9)] for _ in range(9)]
