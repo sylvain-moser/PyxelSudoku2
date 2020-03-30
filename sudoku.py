@@ -185,7 +185,9 @@ print(puzzle, solution, sep='\n')
 ## Make a board structure to fill in the data with.
 empty_board = [[0 for _ in range(9)] for _ in range(9)]
 
-print("""
+
+def print_empty_board():
+    print("""
 {} {} {} | {} {} {} | {} {} {}
 {} {} {} | {} {} {} | {} {} {}
 {} {} {} | {} {} {} | {} {} {}
@@ -199,6 +201,9 @@ print("""
 {} {} {} | {} {} {} | {} {} {}
 """.format(*[val if val else ' ' for row in empty_board for val in row]))
 
+
+print_empty_board()
+
 ## Fill Board with puzzle data
 spots = iter(puzzle)
 puzzle_board = [[int(next(spots)) for _ in range(9)] for _ in
@@ -208,7 +213,9 @@ solution_spots = iter(solution)
 solution_board = [[int(next(solution_spots)) for _ in range(9)] for _ in
                   range(9)]  # change form a string to a list of list of ints
 
-print("""
+
+def print_puzzle_board():
+    print("""
 {} {} {} | {} {} {} | {} {} {}
 {} {} {} | {} {} {} | {} {} {}
 {} {} {} | {} {} {} | {} {} {}
@@ -222,7 +229,12 @@ print("""
 {} {} {} | {} {} {} | {} {} {}
 """.format(*[val if val else ' ' for row in puzzle_board for val in row]))
 
-print("""
+
+print_puzzle_board()
+
+
+def print_solution_board():
+    print("""
 {} {} {} | {} {} {} | {} {} {}
 {} {} {} | {} {} {} | {} {} {}
 {} {} {} | {} {} {} | {} {} {}
@@ -235,6 +247,9 @@ print("""
 {} {} {} | {} {} {} | {} {} {}
 {} {} {} | {} {} {} | {} {} {}
 """.format(*[val if val else ' ' for row in solution_board for val in row]))
+
+
+print_solution_board()
 
 
 print(rowsValid(solution_board))
