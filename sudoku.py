@@ -1,15 +1,18 @@
 """Sudoku Game"""
 import random
 from copy import deepcopy
+from typing import List, NewType
+
 import pyxel
 
 
 def generate_random_puzzle():
     pass
 
+Board = NewType("Board", List[List[int]])
 
 ## Check if the board is valid.
-def rowsValid(board):
+def rowsValid(board: Board) -> bool:
     for row in board:
         if len([val for val in row if val]) == len(
             set(val for val in row if val)
@@ -20,7 +23,7 @@ def rowsValid(board):
     return True
 
 
-def cols_vald(board):
+def cols_vald(board: Board) -> bool:
     is_valid = []
     for col in zip(*board):
         is_valid.append(
@@ -32,7 +35,7 @@ def cols_vald(board):
         return False
 
 
-def board_valid(problem_board, solution_board):
+def board_valid(problem_board: Board, solution_board: Board) -> bool:
     # all the rules of sudoku haven't been broken
     if rowsValid(problem_board):
         if cols_vald(problem_board):
