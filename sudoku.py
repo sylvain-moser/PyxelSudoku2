@@ -224,20 +224,13 @@ puzzle, solution = format_puzzle(line)
 
 ## Make a board structure to fill in the data with.
 empty_board = [[0 for _ in range(9)] for _ in range(9)]
-format_board(empty_board)
 
 ## Fill Board with puzzle data
 puzzle_board = fill_board(puzzle)
 solution_board = fill_board(solution)
 
-format_board(puzzle_board)
-format_board(solution_board)
-
 rowsValid(solution_board)
 cols_vald(solution_board)
-
-# The little 3x3 rectangles on a sudoku board are called "boxes" (https://simple.wikipedia.org/wiki/Sudoku)
-invalid_puzzle = generate_random_puzzle()
 
 pyxel.init(156, 183, caption="Sudoku Game")
 
@@ -245,8 +238,7 @@ pyxel.init(156, 183, caption="Sudoku Game")
 selected_value = 1
 cell_selected = (0, 0)
 
-format_board(puzzle_board)
-format_board(update_board(puzzle_board, 4, 4, 8))
+update_board(puzzle_board, 4, 4, 8)
 
 pyxel.cls(3)
 pyxel.text(1, 1, "8", 0)
@@ -254,11 +246,9 @@ pyxel.text(1, 1, "8", 0)
 is_valid = True
 pyxel.load("my_resource.pyxres", True, True)
 image = pyxel.image(0)
-dir(image)
-
-pyxel.mouse(True)
 
 ###start the game###
+pyxel.mouse(True)
 pyxel.run(update, draw)
 
 print("That was fun, why don't we play again?")
