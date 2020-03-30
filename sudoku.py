@@ -133,7 +133,7 @@ invalid_puzzle = generate_random_puzzle()
 #     return True
 
 
-print(box_valid(solution_board))
+# print(box_valid(solution_board))
 
 
 import pyxel
@@ -143,7 +143,7 @@ def board_valid(problem_board, solution_board):
     # all the rules of sudoku haven't been broken
     if rowsValid(problem_board):
         if cols_vald(problem_board):
-            if box_valid(problem_board):
+            if True: #box_valid(problem_board):
                 pass
             else:
                 return False
