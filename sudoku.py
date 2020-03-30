@@ -136,17 +136,17 @@ def update():
     # select the board spot when the player clicks the left mouse button
     if pyxel.btnp(pyxel.MOUSE_LEFT_BUTTON):
         mouse_pos = (pyxel.mouse_x, pyxel.mouse_y)
-        print(mouse_pos)
+
         board_spot = get_board_spot(*mouse_pos)
         if mouse_pos[1] < 155:
             cell_selected = board_spot
         else:
             selected_value = board_spot[0] + 1
-            print("selected value:", selected_value)
+
     # update the board spot when the player clicks the right mouse button
     if pyxel.btnp(pyxel.MOUSE_RIGHT_BUTTON):
         mouse_pos = (pyxel.mouse_x, pyxel.mouse_y)
-        print(mouse_pos)
+
         board_spot = get_board_spot(*mouse_pos)
         x, y = board_spot
         cell_value = puzzle_board[x][y]
@@ -158,9 +158,9 @@ def update():
     is_valid = board_valid(puzzle_board, solution_board)
 
     if board_is_full(puzzle_board):
-        print("full")
+
         if board_valid(puzzle_board):
-            print("hi")
+
             game_won = True
         else:
             game_won = False
@@ -212,7 +212,6 @@ line = line.strip()
 puzzle, solution = line.split(",")
 
 
-print(puzzle, solution, sep="\n")
 
 
 ## Make a board structure to fill in the data with.
@@ -237,11 +236,10 @@ print_board(puzzle_board)
 
 print_board(solution_board)
 
+rowsValid(solution_board)
+cols_vald(solution_board)
 
-print(rowsValid(solution_board))
 
-
-print(cols_vald(solution_board))
 
 # The little 3x3 rectangles on a sudoku board are called "boxes" (https://simple.wikipedia.org/wiki/Sudoku)
 boxes = [
@@ -278,9 +276,10 @@ pyxel.text(1, 1, "8", 0)
 
 
 is_valid = True
-print(pyxel.load("my_resource.pyxres", True, True))
+pyxel.load("my_resource.pyxres", True, True)
 image = pyxel.image(0)
-print(dir(image))
+dir(image)
+
 
 pyxel.mouse(True)
 
