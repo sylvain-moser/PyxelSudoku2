@@ -10,4 +10,3 @@ This is a sudoku game written in Python!
 ```
 python sudoku.py
 ```
-
