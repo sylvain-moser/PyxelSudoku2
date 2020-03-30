@@ -116,21 +116,21 @@ boxes = [
     [7, 7, 7, 8, 8, 8, 9, 9, 9],
 ]
 
-import numpy as np
+# import numpy as np
 
 invalid_puzzle = generate_random_puzzle()
 
 
-def box_valid(board):
-    board = np.array(board)
-    slices = (slice(0, 3), slice(3, 6), slice(6, 9))
-    box_coords = [(slice(0, 3), slice(0, 3)), (slice(3, 6), slice(0, 3)), (slice(6, 9), slice(0, 3))]
-    for rows in slices:
-        for cols in slices:
-            box = board[rows, cols]
-            if len(np.unique(box[box != 0])) != box[box != 0].size:
-                return False
-    return True
+# def box_valid(board):
+#     board = np.array(board)
+#     slices = (slice(0, 3), slice(3, 6), slice(6, 9))
+#     box_coords = [(slice(0, 3), slice(0, 3)), (slice(3, 6), slice(0, 3)), (slice(6, 9), slice(0, 3))]
+#     for rows in slices:
+#         for cols in slices:
+#             box = board[rows, cols]
+#             if len(np.unique(box[box != 0])) != box[box != 0].size:
+#                 return False
+#     return True
 
 
 print(box_valid(solution_board))
