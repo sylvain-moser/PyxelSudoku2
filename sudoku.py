@@ -1,65 +1,16 @@
 """Sudoku Game"""
 import random
 from copy import deepcopy
-import pyxel
+from typing import List, NewType
 
+import pyxel
+from board import Board, rowsValid, cols_vald, board_valid, update_board
 
 def generate_random_puzzle():
     pass
 
 
 ## Check if the board is valid.
-def rowsValid(board):
-    for row in board:
-        if len([val for val in row if val]) == len(
-            set(val for val in row if val)
-        ):  # check if the values are all unique, not counting zeroes
-            continue
-        else:
-            return False
-    return True
-
-
-def cols_vald(board):
-    is_valid = []
-    for col in zip(*board):
-        is_valid.append(
-            len(list(filter(bool, col))) == len(set(filter(bool, col)))
-        )  # check if the column contains unique values, not counting zeroes
-    if all(is_valid):  # if all the columns are valid
-        return True
-    else:
-        return False
-
-
-def board_valid(problem_board, solution_board):
-    # all the rules of sudoku haven't been broken
-    if rowsValid(problem_board):
-        if cols_vald(problem_board):
-            if True:  # box_valid(problem_board):
-                pass
-            else:
-                return False
-        else:
-            return False
-    else:
-        return False
-
-    # the board matches the solution board so far.
-    for pcol, scol in zip(problem_board, solution_board):
-        for pval, sval in zip(pcol, scol):
-            if pval:
-                if pval == sval:
-                    continue
-                else:
-                    return False
-    return True
-
-
-def update_board(board, row, col, value):
-    new_board = deepcopy(board)
-    new_board[row][col] = value
-    return new_board
 
 
 def draw():
@@ -224,20 +175,13 @@ puzzle, solution = format_puzzle(line)
 
 ## Make a board structure to fill in the data with.
 empty_board = [[0 for _ in range(9)] for _ in range(9)]
-format_board(empty_board)
 
 ## Fill Board with puzzle data
 puzzle_board = fill_board(puzzle)
 solution_board = fill_board(solution)
 
-format_board(puzzle_board)
-format_board(solution_board)
-
 rowsValid(solution_board)
 cols_vald(solution_board)
-
-# The little 3x3 rectangles on a sudoku board are called "boxes" (https://simple.wikipedia.org/wiki/Sudoku)
-invalid_puzzle = generate_random_puzzle()
 
 pyxel.init(156, 183, caption="Sudoku Game")
 
@@ -245,8 +189,7 @@ pyxel.init(156, 183, caption="Sudoku Game")
 selected_value = 1
 cell_selected = (0, 0)
 
-format_board(puzzle_board)
-format_board(update_board(puzzle_board, 4, 4, 8))
+update_board(puzzle_board, 4, 4, 8)
 
 pyxel.cls(3)
 pyxel.text(1, 1, "8", 0)
@@ -254,11 +197,9 @@ pyxel.text(1, 1, "8", 0)
 is_valid = True
 pyxel.load("my_resource.pyxres", True, True)
 image = pyxel.image(0)
-dir(image)
-
-pyxel.mouse(True)
 
 ###start the game###
+pyxel.mouse(True)
 pyxel.run(update, draw)
 
 print("That was fun, why don't we play again?")
