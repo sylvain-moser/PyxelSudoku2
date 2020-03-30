@@ -241,17 +241,7 @@ cols_vald(solution_board)
 
 
 # The little 3x3 rectangles on a sudoku board are called "boxes" (https://simple.wikipedia.org/wiki/Sudoku)
-boxes = [
-    [1, 1, 1, 2, 2, 2, 3, 3, 3],
-    [1, 1, 1, 2, 2, 2, 3, 3, 3],
-    [1, 1, 1, 2, 2, 2, 3, 3, 3],
-    [4, 4, 4, 5, 5, 5, 6, 6, 6],
-    [4, 4, 4, 5, 5, 5, 6, 6, 6],
-    [4, 4, 4, 5, 5, 5, 6, 6, 6],
-    [7, 7, 7, 8, 8, 8, 9, 9, 9],
-    [7, 7, 7, 8, 8, 8, 9, 9, 9],
-    [7, 7, 7, 8, 8, 8, 9, 9, 9],
-]
+
 
 invalid_puzzle = generate_random_puzzle()
 
