@@ -3,84 +3,13 @@ import random
 from copy import deepcopy
 import pyxel
 
-game_won = False
-
-## Read sudoku data
-f = open('sudoku.csv')
-text = f.read()
-
-lines = text.splitlines()
-
-# Get one of the puzzles and its corresponding solution
-
-line_number = random.randint(0, len(lines))
-line = lines[line_number]
-line = line.strip()
-puzzle, solution = line.split(',')
-print(puzzle, solution, sep='\n')
 
 
 def generate_random_puzzle():
     pass
 
 
-## Make a board structure to fill in the data with.
-empty_board = [[0 for _ in range(9)] for _ in range(9)]
-
-print("""
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
----------------------
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
----------------------
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
-""".format(*[val if val else ' ' for row in empty_board for val in row]))
-
-## Fill Board with puzzle data
-spots = iter(puzzle)
-puzzle_board = [[int(next(spots)) for _ in range(9)] for _ in
-                range(9)]  # change from a string to a list of list of ints
-
-solution_spots = iter(solution)
-solution_board = [[int(next(solution_spots)) for _ in range(9)] for _ in
-                  range(9)]  # change form a string to a list of list of ints
-
-print("""
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
----------------------
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
----------------------
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
-""".format(*[val if val else ' ' for row in puzzle_board for val in row]))
-
-print("""
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
----------------------
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
----------------------
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
-""".format(*[val if val else ' ' for row in solution_board for val in row]))
-
-
 ## Check if the board is valid.
-
 def rowsValid(board):
     for row in board:
         if len([val for val in row if val]) == len(
@@ -89,10 +18,6 @@ def rowsValid(board):
         else:
             return False
     return True
-
-
-print(rowsValid(solution_board))
-
 
 def cols_vald(board):
     is_valid = []
@@ -105,105 +30,34 @@ def cols_vald(board):
         return False
 
 
-print(cols_vald(solution_board))
-
-# The little 3x3 rectangles on a sudoku board are called "boxes" (https://simple.wikipedia.org/wiki/Sudoku)
-boxes = [
-    [1, 1, 1, 2, 2, 2, 3, 3, 3],
-    [1, 1, 1, 2, 2, 2, 3, 3, 3],
-    [1, 1, 1, 2, 2, 2, 3, 3, 3],
-    [4, 4, 4, 5, 5, 5, 6, 6, 6],
-    [4, 4, 4, 5, 5, 5, 6, 6, 6],
-    [4, 4, 4, 5, 5, 5, 6, 6, 6],
-    [7, 7, 7, 8, 8, 8, 9, 9, 9],
-    [7, 7, 7, 8, 8, 8, 9, 9, 9],
-    [7, 7, 7, 8, 8, 8, 9, 9, 9],
-]
-
-invalid_puzzle = generate_random_puzzle()
-
-
-
-
-pyxel.init(156, 183, caption="Sudoku Game")
-
-
 def board_valid(problem_board, solution_board):
-    # all the rules of sudoku haven't been broken
-    if rowsValid(problem_board):
-        if cols_vald(problem_board):
-            if True:  # box_valid(problem_board):
-                pass
+        # all the rules of sudoku haven't been broken
+        if rowsValid(problem_board):
+            if cols_vald(problem_board):
+                if True:  # box_valid(problem_board):
+                    pass
+                else:
+                    return False
             else:
                 return False
         else:
             return False
-    else:
-        return False
 
-    # the board matches the solution board so far.
-    for pcol, scol in zip(problem_board, solution_board):
-        for pval, sval in zip(pcol, scol):
-            if pval:
-                if pval == sval:
-                    continue
-                else:
-                    return False
-    return True
-
-
-## change board
-selected_value = 1
-
+        # the board matches the solution board so far.
+        for pcol, scol in zip(problem_board, solution_board):
+            for pval, sval in zip(pcol, scol):
+                if pval:
+                    if pval == sval:
+                        continue
+                    else:
+                        return False
+        return True
 
 
 def update_board(board, row, col, value):
     new_board = deepcopy(board)
     new_board[row][col] = value
     return new_board
-
-
-cell_selected = (0, 0)
-
-print("""
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
----------------------
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
----------------------
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
-""".format(*[val if val else ' ' for row in puzzle_board for val in row]))
-
-print("""
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
----------------------
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
----------------------
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
-{} {} {} | {} {} {} | {} {} {}
-""".format(*[val if val else ' ' for row in update_board(puzzle_board, 4, 4, 8) for val in row]))
-
-pyxel.cls(3)
-pyxel.text(1, 1, "8", 0)
-
-
-is_valid = True
-print(pyxel.load('my_resource.pyxres', True, True))
-image = pyxel.image(0)
-print(dir(image))
-
-pyxel.mouse(True)
-
 
 def draw():
     global puzzle_board
@@ -308,6 +162,154 @@ def board_is_full(board):
                 return False
     else:
         return True
+
+
+game_won = False
+## Read sudoku data
+f = open('sudoku.csv')
+
+text = f.read()
+
+# Get one of the puzzles and its corresponding solution
+
+lines = text.splitlines()
+line_number = random.randint(0, len(lines))
+line = lines[line_number]
+line = line.strip()
+puzzle, solution = line.split(',')
+
+
+print(puzzle, solution, sep='\n')
+
+
+## Make a board structure to fill in the data with.
+empty_board = [[0 for _ in range(9)] for _ in range(9)]
+
+print("""
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+---------------------
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+---------------------
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+""".format(*[val if val else ' ' for row in empty_board for val in row]))
+
+## Fill Board with puzzle data
+spots = iter(puzzle)
+puzzle_board = [[int(next(spots)) for _ in range(9)] for _ in
+                range(9)]  # change from a string to a list of list of ints
+
+solution_spots = iter(solution)
+solution_board = [[int(next(solution_spots)) for _ in range(9)] for _ in
+                  range(9)]  # change form a string to a list of list of ints
+
+print("""
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+---------------------
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+---------------------
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+""".format(*[val if val else ' ' for row in puzzle_board for val in row]))
+
+print("""
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+---------------------
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+---------------------
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+""".format(*[val if val else ' ' for row in solution_board for val in row]))
+
+
+print(rowsValid(solution_board))
+
+
+
+print(cols_vald(solution_board))
+
+# The little 3x3 rectangles on a sudoku board are called "boxes" (https://simple.wikipedia.org/wiki/Sudoku)
+boxes = [
+    [1, 1, 1, 2, 2, 2, 3, 3, 3],
+    [1, 1, 1, 2, 2, 2, 3, 3, 3],
+    [1, 1, 1, 2, 2, 2, 3, 3, 3],
+    [4, 4, 4, 5, 5, 5, 6, 6, 6],
+    [4, 4, 4, 5, 5, 5, 6, 6, 6],
+    [4, 4, 4, 5, 5, 5, 6, 6, 6],
+    [7, 7, 7, 8, 8, 8, 9, 9, 9],
+    [7, 7, 7, 8, 8, 8, 9, 9, 9],
+    [7, 7, 7, 8, 8, 8, 9, 9, 9],
+]
+
+invalid_puzzle = generate_random_puzzle()
+
+
+
+
+pyxel.init(156, 183, caption="Sudoku Game")
+
+
+
+## change board
+selected_value = 1
+
+
+cell_selected = (0, 0)
+
+print("""
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+---------------------
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+---------------------
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+""".format(*[val if val else ' ' for row in puzzle_board for val in row]))
+
+print("""
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+---------------------
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+---------------------
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+{} {} {} | {} {} {} | {} {} {}
+""".format(*[val if val else ' ' for row in update_board(puzzle_board, 4, 4, 8) for val in row]))
+
+pyxel.cls(3)
+pyxel.text(1, 1, "8", 0)
+
+
+is_valid = True
+print(pyxel.load('my_resource.pyxres', True, True))
+image = pyxel.image(0)
+print(dir(image))
+
+pyxel.mouse(True)
+
 
 
 ###start the game###
