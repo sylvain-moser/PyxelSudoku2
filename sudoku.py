@@ -12,9 +12,7 @@ text = f.read()
 lines = text.splitlines()
 
 # Get one of the puzzles and its corresponding solution
-# line_number = 20
-# line_number = 1
-# line_number = 600
+
 line_number = random.randint(0, len(lines))
 line = lines[line_number]
 line = line.strip()
@@ -124,19 +122,7 @@ boxes = [
 
 invalid_puzzle = generate_random_puzzle()
 
-# def box_valid(board):
-#     board = np.array(board)
-#     slices = (slice(0, 3), slice(3, 6), slice(6, 9))
-#     box_coords = [(slice(0, 3), slice(0, 3)), (slice(3, 6), slice(0, 3)), (slice(6, 9), slice(0, 3))]
-#     for rows in slices:
-#         for cols in slices:
-#             box = board[rows, cols]
-#             if len(np.unique(box[box != 0])) != box[box != 0].size:
-#                 return False
-#     return True
 
-
-# print(box_valid(solution_board))
 
 
 pyxel.init(156, 183, caption="Sudoku Game")
@@ -209,7 +195,7 @@ print("""
 
 pyxel.cls(3)
 pyxel.text(1, 1, "8", 0)
-# pyxel.show()
+
 
 is_valid = True
 print(pyxel.load('my_resource.pyxres', True, True))
