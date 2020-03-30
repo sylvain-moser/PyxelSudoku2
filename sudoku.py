@@ -16,7 +16,7 @@ line_number = random.randint(0, len(lines))
 line = lines[line_number]
 line = line.strip()
 puzzle, solution = line.split(',')
-print(puzzle, solution, sep='\n')
+print(puzzle, solution)
 
 def generate_random_puzzle():
     pass
