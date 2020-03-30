@@ -1,11 +1,13 @@
 """Sudoku Game"""
+import random
+from copy import deepcopy
+import pyxel
 
 game_won = False
 
 ## Read sudoku data
 f = open('sudoku.csv')
 text = f.read()
-import random
 
 lines = text.splitlines()
 
@@ -107,9 +109,6 @@ def cols_vald(board):
 
 print(cols_vald(solution_board))
 
-import os
-from os import path
-
 # The little 3x3 rectangles on a sudoku board are called "boxes" (https://simple.wikipedia.org/wiki/Sudoku)
 boxes = [
     [1, 1, 1, 2, 2, 2, 3, 3, 3],
@@ -122,8 +121,6 @@ boxes = [
     [7, 7, 7, 8, 8, 8, 9, 9, 9],
     [7, 7, 7, 8, 8, 8, 9, 9, 9],
 ]
-
-# import numpy as np
 
 invalid_puzzle = generate_random_puzzle()
 
@@ -141,8 +138,6 @@ invalid_puzzle = generate_random_puzzle()
 
 # print(box_valid(solution_board))
 
-
-import pyxel
 
 pyxel.init(156, 183, caption="Sudoku Game")
 
@@ -171,11 +166,9 @@ def board_valid(problem_board, solution_board):
     return True
 
 
-import itertools as it
-
 ## change board
 selected_value = 1
-from copy import deepcopy
+
 
 
 def update_board(board, row, col, value):
@@ -284,7 +277,6 @@ def update():
     global cell_selected
     global selected_value
     global game_won
-    import pyxel
     if pyxel.btnp(pyxel.KEY_Q):
         pyxel.quit()
 
