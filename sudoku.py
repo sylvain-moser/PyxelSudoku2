@@ -195,6 +195,11 @@ def format_board(current_board):
         )
 
 
+def fill_board(puzzle):
+    spots = iter(puzzle)
+    puzzle_board = [[int(next(spots)) for _ in range(9)] for _ in range(9)]
+    return puzzle_board # change from a string to a list of list of ints
+
 
 game_won = False
 ## Read sudoku data
@@ -215,15 +220,8 @@ empty_board = [[0 for _ in range(9)] for _ in range(9)]
 format_board(empty_board)
 
 ## Fill Board with puzzle data
-spots = iter(puzzle)
-puzzle_board = [
-    [int(next(spots)) for _ in range(9)] for _ in range(9)
-]  # change from a string to a list of list of ints
-
-solution_spots = iter(solution)
-solution_board = [
-    [int(next(solution_spots)) for _ in range(9)] for _ in range(9)
-]  # change form a string to a list of list of ints
+puzzle_board = fill_board(puzzle)
+solution_board = fill_board(solution)
 
 format_board(puzzle_board)
 format_board(solution_board)
