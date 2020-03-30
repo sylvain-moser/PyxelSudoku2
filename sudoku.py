@@ -177,9 +177,8 @@ def board_is_full(board):
         return True
 
 
-def print_board(current_board):
-    print(
-        """
+def format_board(current_board):
+    return """
 {} {} {} | {} {} {} | {} {} {}
 {} {} {} | {} {} {} | {} {} {}
 {} {} {} | {} {} {} | {} {} {}
@@ -194,7 +193,7 @@ def print_board(current_board):
 """.format(
             *[val if val else " " for row in current_board for val in row]
         )
-    )
+
 
 
 game_won = False
@@ -218,7 +217,7 @@ puzzle, solution = line.split(",")
 empty_board = [[0 for _ in range(9)] for _ in range(9)]
 
 
-print_board(empty_board)
+format_board(empty_board)
 
 ## Fill Board with puzzle data
 spots = iter(puzzle)
@@ -232,9 +231,9 @@ solution_board = [
 ]  # change form a string to a list of list of ints
 
 
-print_board(puzzle_board)
+format_board(puzzle_board)
 
-print_board(solution_board)
+format_board(solution_board)
 
 rowsValid(solution_board)
 cols_vald(solution_board)
@@ -267,8 +266,8 @@ selected_value = 1
 cell_selected = (0, 0)
 
 
-print_board(puzzle_board)
-print_board(update_board(puzzle_board, 4, 4, 8))
+format_board(puzzle_board)
+format_board(update_board(puzzle_board, 4, 4, 8))
 
 
 pyxel.cls(3)
