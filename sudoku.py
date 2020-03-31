@@ -1,4 +1,6 @@
 """Sudoku Game"""
+
+# import packages and functions defined in board
 import random
 from copy import deepcopy
 from typing import List, NewType
@@ -6,13 +8,12 @@ from typing import List, NewType
 import pyxel
 from board import Board, rowsValid, cols_vald, board_valid, update_board
 
+
 def generate_random_puzzle():
     pass
 
 
-## Check if the board is valid.
-
-
+# Check if the board is valid.
 def draw():
     global puzzle_board
     global solution_board
@@ -21,7 +22,7 @@ def draw():
     global selected_value
     global game_won
     if game_won:
-        pyxel.cls(10)  # Make bakcground yellow if game is won
+        pyxel.cls(10)  # Make background yellow if game is won
     # Draw each space
     for i, row in enumerate(puzzle_board):
         for j, value in enumerate(row):
@@ -142,18 +143,18 @@ def format_board(current_board):
 {} {} {} | {} {} {} | {} {} {}
 {} {} {} | {} {} {} | {} {} {}
 """.format(
-            *[val if val else " " for row in current_board for val in row]
-        )
+        *[val if val else " " for row in current_board for val in row]
+    )
 
 
 def fill_board(puzzle):
     spots = iter(puzzle)
     puzzle_board = [[int(next(spots)) for _ in range(9)] for _ in range(9)]
-    return puzzle_board # change from a string to a list of list of ints
+    return puzzle_board  # change from a string to a list of list of ints
 
 
 def read_line_from_puzzlefile(file):
-    ## Read sudoku data
+    # Read sudoku data
     f = open(file)
     text = f.read()
     # Get one of the puzzles and its corresponding solution
@@ -173,10 +174,10 @@ game_won = False
 line = read_line_from_puzzlefile("sudoku.csv")
 puzzle, solution = format_puzzle(line)
 
-## Make a board structure to fill in the data with.
+# Make a board structure to fill in the data with.
 empty_board = [[0 for _ in range(9)] for _ in range(9)]
 
-## Fill Board with puzzle data
+# Fill Board with puzzle data
 puzzle_board = fill_board(puzzle)
 solution_board = fill_board(solution)
 
@@ -185,7 +186,7 @@ cols_vald(solution_board)
 
 pyxel.init(156, 183, caption="Sudoku Game")
 
-## change board
+# change board
 selected_value = 1
 cell_selected = (0, 0)
 
@@ -198,7 +199,7 @@ is_valid = True
 pyxel.load("my_resource.pyxres", True, True)
 image = pyxel.image(0)
 
-###start the game###
+# start the game #
 pyxel.mouse(True)
 pyxel.run(update, draw)
 
