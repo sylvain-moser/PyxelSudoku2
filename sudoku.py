@@ -9,7 +9,7 @@ from make_functions import make_functions
 import pyxel
 from board import rowsValid, cols_vald, update_board
 
-from utils import format_board, fill_board, read_line_from_puzzlefile, format_puzzle
+from utils import fill_board, read_line_from_puzzlefile, format_puzzle
 
 game_won = False
 
