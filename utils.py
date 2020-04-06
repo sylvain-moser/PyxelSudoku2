@@ -1,3 +1,5 @@
+import random
+
 def generate_random_puzzle():
     pass
 

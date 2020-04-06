@@ -1,7 +1,7 @@
 import pyxel
 from board import board_valid
 
-from utils import get_board_spot , board_is_full , format_board, fill_board, read_line_from_puzzlefile, format_puzzle
+from utils import get_board_spot , board_is_full
 
 
 def make_functions(puzzle_board, solution_board,is_valid, cell_selected, selected_value, game_won):
