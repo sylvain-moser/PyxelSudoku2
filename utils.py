@@ -1,10 +1,13 @@
 import random
 
+
 def generate_random_puzzle():
     pass
 
+
 def get_board_spot(mouse_x, mouse_y):
     return min(int(mouse_x // 17), 8), min(int(mouse_y // 17), 8)
+
 
 def board_is_full(board):
     for row in board:
