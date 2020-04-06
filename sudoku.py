@@ -4,6 +4,7 @@
 import random
 from copy import deepcopy
 from typing import List, NewType
+from make_functions import make_functions
 
 import pyxel
 from board import Board, rowsValid, cols_vald, board_valid, update_board
@@ -171,6 +172,7 @@ def format_puzzle(line):
 
 game_won = False
 
+
 line = read_line_from_puzzlefile("sudoku.csv")
 puzzle, solution = format_puzzle(line)
 
@@ -201,6 +203,7 @@ image = pyxel.image(0)
 
 # start the game #
 pyxel.mouse(True)
+update, draw = make_functions(puzzle_board, solution_board,is_valid, cell_selected, selected_value, game_won)
 pyxel.run(update, draw)
 
 print("That was fun, why don't we play again?")
